@@ -4,18 +4,17 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     //
     public function index(){
-        $categories = [
-            ['id'=>'1', 'name'=>'Truyện tranh'],
-            ['id'=>'2', 'name'=>'Ngôn tình'],
-            ['id'=>'3', 'name'=>'Tiểu thuyết'],
-            ['id'=>'4', 'name'=>'Khoa học'],
-            ['id'=>'5', 'name'=>'Truyện cổ tich']
-        ];
+        $categories = DB::table('categories')->get();
+//        echo "<pre>";
+//        print_r($categories);
+//        echo "</pre>";
+//        exit;
         return view('admin.content.category.index', ['categories'=>$categories]);
     }
 }

@@ -21,6 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', [HomeController::class, 'index']);
-Route::get('/admin', [AdminController::class, 'index'])->name("admin.homepage");
-Route::get('/admin/category', [CategoryController::class, 'index'])->name("admin.category.index");
-Route::get('/admin/book', [BookController::class, 'index'])->name("admin.book.index");
+//Route::get('/admin', [AdminController::class, 'index'])->name("admin.homepage");
+//Route::get('/admin/category', [CategoryController::class, 'index'])->name("admin.category.index");
+//Route::get('/admin/book', [BookController::class, 'index'])->name("admin.book.index");
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('/', [AdminController::class, 'index'])->name("admin.index");
+    Route::get('/category', [CategoryController::class, 'index'])->name("admin.category.index");
+    Route::get('/book', [BookController::class, 'index'])->name("admin.book.index");
+});
